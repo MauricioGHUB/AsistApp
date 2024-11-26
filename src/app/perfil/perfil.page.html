@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Mi Perfil
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="profile-content">
+  <div class="profile-header">
+    <h2 class="profile-name">{{ usuario?.nombre }}</h2>
+    <p class="profile-username">{{ usuario?.email }}</p>
+  </div>
+
+  <ion-list class="profile-details" *ngIf="usuario">
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-text>{{ usuario.nombre }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-text>{{ usuario.email }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Rut</ion-label>
+      <ion-text>{{ usuario.rut }}</ion-text>
+    </ion-item>
+  </ion-list>
+
+  <ion-button (click)="redirigirUpdate()" expand="block" fill="clear" shape="round">
+    Cambiar Datos
+  </ion-button>
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="regresar()">
+          Regresar
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+      <ion-item *ngFor="let u of usuarios" (click)="verDetalleUsuario(u)">
+        <ion-label>
+          <h3>Nombre: {{ u.nombre }}</h3>
+          <h2>Email: {{ u.email }}</h2>
+          <h3>Contraseña: {{ u.password }}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="regresar()">Regresar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>ID: {{ post?.id }}</ion-card-subtitle> 
+      <ion-card-title>Nombre: {{ post?.nombre }}</ion-card-title>  
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ post?.descripcion }}</p>  
+    </ion-card-content>
+  </ion-card>
+
+  <div style="text-align: center; margin-top: 30px;">
+    <ion-button [routerLink]="['/actualizar', post.id]" expand="block" fill="clear" shape="round">
+      Actualizar Evento
+    </ion-button>
+
+    <ion-button [routerLink]="['/eliminar', post.id]" expand="block" fill="clear" shape="round" color="danger">
+      Eliminar Evento
+    </ion-button>
+  </div>
+</ion-content>

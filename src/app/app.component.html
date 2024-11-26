@@ -1,0 +1,28 @@
+<ion-app>
+  <ion-menu contentId="main" menuId="first" side="end" type="overlay">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-icon slot="start" name="radio-outline" size="large" style="padding-left: 15px;"></ion-icon>
+        <ion-title>InsKrip App</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-menu-toggle *ngFor="let m of menu">
+        <ion-item [routerLink]="m.redirecTo" detail="true" class="menu-item">
+          <ion-icon slot="start" [name]="m.icon" color="dark"></ion-icon>
+          <ion-label class="menu-item-label">{{ m.name }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-content>
+
+    <ion-footer>
+      <ion-item button (click)="exitSess()">
+        <ion-icon slot="start" name="log-out-outline" color="dark"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+    </ion-footer>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

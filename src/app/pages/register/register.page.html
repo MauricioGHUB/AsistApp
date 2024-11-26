@@ -1,0 +1,73 @@
+<ion-header mode="ios" [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="text-align: center">Registrarse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card mode="ios">
+    <ion-card-header>
+      <ion-card-title>Ingrese sus datos</ion-card-title>
+    </ion-card-header>
+  <form [formGroup]="registroForm" (ngSubmit)="crearUsuario()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" formControlName="nombre"></ion-input>
+    </ion-item>
+    <div *ngIf="registroForm.get('nombre')?.invalid && (registroForm.get('nombre')?.dirty || registroForm.get('nombre')?.touched)">
+      <div *ngIf="registroForm.get('nombre')?.hasError('required')">
+        *El nombre es obligatorio
+      </div>
+      <div *ngIf="registroForm.get('nombre')?.hasError('minlength')">
+        *El nombre debe tener al menos 6 caracteres
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <div *ngIf="registroForm.get('email')?.invalid && (registroForm.get('email')?.dirty || registroForm.get('email')?.touched)">
+      <div *ngIf="registroForm.get('email')?.hasError('required')">
+        *El correo es obligatorio
+      </div>
+      <div *ngIf="registroForm.get('email')?.hasError('email')">
+        *Debe ingresar un correo válido
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">RUT</ion-label>
+      <ion-input type="text" formControlName="rut"></ion-input>
+    </ion-item>
+    <div *ngIf="registroForm.get('rut')?.invalid && (registroForm.get('rut')?.dirty || registroForm.get('rut')?.touched)">
+      <div *ngIf="registroForm.get('rut')?.hasError('required')">
+        *El RUT es obligatorio, ingrese sin puntos ni guion
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <div *ngIf="registroForm.get('password')?.invalid && (registroForm.get('password')?.dirty || registroForm.get('password')?.touched)">
+      <div *ngIf="registroForm.get('password')?.hasError('required')">
+        *La contraseña es obligatoria
+      </div>
+      <div *ngIf="registroForm.get('password')?.hasError('pattern')">
+        *La contraseña debe tener al menos 8 caracteres, incluyendo al menos una letra y un número
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px">
+      <ion-button type="submit" [disabled]="!registroForm.valid" shape="round" color="primary">
+        Registrarse
+      </ion-button>
+    </div>
+  </form>
+</ion-card>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <p>¿Ya tienes cuenta? <a (click)="navigateToLogin()" color="primary">Inicia sesión pulsando aquí</a></p>
+  </div>
+</ion-content>

@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-icon slot="start" name="radio-outline" size="large" style="padding-left: 15px;"></ion-icon>
+    <ion-title>InsKrip App</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="mostrarMenu()">
+        <ion-icon slot="end" name="menu-outline" size="large" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="hero-section">
+    <h1 class="hero-title">Bienvenido a InsKrip App</h1>
+    <p class="hero-subtitle">Gestiona tus seminarios y eventos con facilidad</p>
+    <div class="banner" *ngIf="slides.length > 0">
+      <swiper-container 
+      [modules]="swiperModules"
+      [autoplay]="{ delay: 300, disableOnInteraction: false }"
+      [pagination]="{clickable: true, dynamicBullets: true}"
+      [spaceBetween]="15"
+      [loop]="true">
+        <swiper-slide *ngFor="let slide of slides">
+          <img [src]="slide?.banner">
+        </swiper-slide>
+      </swiper-container>
+    </div>
+    <ion-button (click)="redirigirATab2()" expand="block" fill="clear" shape="round" class="get-started-btn"> 
+      Explorar Eventos
+    </ion-button>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="info-section">
+        <h2 class="section-title">¿Qué es InsKrip App?</h2>
+        <p class="section-text">
+          InsKrip App es tu aplicación ideal para estar al tanto de los eventos más importantes en el mundo de la informática y la tecnología. Desde conferencias de desarrollo web hasta seminarios sobre ciberseguridad, InsKrip App te proporciona toda la información que necesitas para mantenerte actualizado.
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="benefits-row">
+      <ion-col size="6" class="benefit-item">
+        <ion-icon name="calendar-outline" color="primary" size="large"></ion-icon>
+        <h3 class="benefit-title">Organización Eficiente</h3>
+        <p class="benefit-text">Consulta fechas, horarios y lugares de los eventos en un solo lugar.</p>
+      </ion-col>
+      <ion-col size="6" class="benefit-item">
+        <ion-icon name="people-outline" color="primary" size="large"></ion-icon>
+        <h3 class="benefit-title">Networking</h3>
+        <p class="benefit-text">Conéctate con profesionales y expertos del sector tecnológico.</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="benefits-row">
+      <ion-col size="6" class="benefit-item">
+        <ion-icon name="desktop-outline" color="primary" size="large"></ion-icon>
+        <h3 class="benefit-title">Acceso a Conferencias</h3>
+        <p class="benefit-text">Accede a seminarios y conferencias en línea o presenciales.</p>
+      </ion-col>
+      <ion-col size="6" class="benefit-item">
+        <ion-icon name="rocket-outline" color="primary" size="large"></ion-icon>
+        <h3 class="benefit-title">Crecimiento Profesional</h3>
+        <p class="benefit-text">Mantente al día con las últimas tendencias y tecnologías emergentes.</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

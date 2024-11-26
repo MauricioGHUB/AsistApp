@@ -1,0 +1,33 @@
+<ion-header mode="ios" [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="text-align: center">Recuperar Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card mode="ios">
+    <ion-card-header>
+      <ion-card-title>Ingrese sus datos</ion-card-title>
+    </ion-card-header>
+  
+  <ion-card-content>
+        
+    <ion-label>Ingrese su correo electrónico para poder enviar un codigo de recuperacion</ion-label>
+    <ion-item>
+      <ion-input label="Email" labelPlacement="floating" placeholder="Ingrese su correo electrónico" name="correo" [(ngModel)]="correo"></ion-input>
+    </ion-item>
+
+</ion-card-content>
+<div style="text-align: center;">
+  <ion-button (click)="codeEnv()" fill="solid" shape="round" style="--background: #007BFF; padding-bottom: 1px;">
+    Recuperar
+  </ion-button>
+</div>
+</ion-card>
+
+<div style="text-align: center; margin-top: 275px;">
+  <p style="color: var(--ion-color-primary); font-size: 14px;">
+    ¿Ya tienes una cuenta? <a (click)="irAComienzo()" style="color: var(--ion-color-primary);">Iniciar sesion</a>
+  </p>
+</div>
+</ion-content>

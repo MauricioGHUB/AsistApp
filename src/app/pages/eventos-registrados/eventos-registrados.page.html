@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/tabs/tab2" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Mis eventos registrados
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let evento of eventosRegistrados">
+      <ion-thumbnail slot="start">
+        <img [src]="'assets/img/' + evento.imagen" alt="{{ evento.nombre }}" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ evento.nombre }}</h2>
+        <p>{{ evento.fecha }} - {{ evento.lugar }}</p>
+      </ion-label>
+      <ion-button (click)="confirmarEliminar(evento)" color="danger">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-text *ngIf="eventosRegistrados.length === 0" style="text-align: center;">
+    <p>No estás registrado en ningún evento.</p>
+  </ion-text>
+</ion-content>

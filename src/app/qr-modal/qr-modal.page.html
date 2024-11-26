@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inscripción Exitosa</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>{{ evento.nombre }}</h2>
+  <p><strong>Fecha:</strong> {{ evento.fecha }}</p>
+  <p><strong>Usuario:</strong> {{ usuario.nombre }}</p>
+  <p><strong>Email:</strong> {{ usuario.email }}</p>
+  <p><strong>RUT:</strong> {{ usuario.rut }}</p>
+
+  <qrcode [qrdata]="codigoQr"></qrcode>
+</ion-content>

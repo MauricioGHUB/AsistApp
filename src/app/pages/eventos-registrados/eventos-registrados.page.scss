@@ -1,0 +1,51 @@
+ion-content {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+ion-title {
+  color: white;
+  text-align: center;
+}
+
+ion-toolbar {
+  --background: #000;
+}
+
+ion-back-button {
+  --color: white;
+}
+
+ion-list {
+  margin-top: 20px;
+}
+
+ion-item {
+  --background: #333333;
+  border-radius: 8px;
+  margin: 10px;
+  color: white;
+}
+
+ion-thumbnail img {
+  border-radius: 8px;
+}
+
+ion-label h2 {
+  color: #146bdd;
+}
+
+ion-label p {
+  color: #146bdd;
+}
+
+ion-button {
+  --color: white;
+}
+
+ion-text p {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+  color: #206aca;
+}

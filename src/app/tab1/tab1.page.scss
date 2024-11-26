@@ -1,0 +1,177 @@
+ion-toolbar ion-title {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.hero-section {
+  background: linear-gradient(135deg, #007BFF 0%, #00C6FF 100%);
+  padding: 90px 10px;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  animation: heroAnimation 1s ease-in-out;
+}
+
+@keyframes heroAnimation {
+  0% {
+    transform: rotateY(-10deg) translateZ(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateY(0) translateZ(0);
+    opacity: 1;
+  }
+}
+
+.hero-title {
+  font-size: 32px;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #d1e9ff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.get-started-btn {
+  margin-top: 30px;
+  --background: #FFFFFF;
+  --color: #007BFF;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 25px;
+  border-radius: 30px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.get-started-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.futuristic-card {
+  background: #1e90ff;
+  color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgb(0, 0, 0);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.futuristic-card:hover {
+  transform: rotateY(15deg) scale(1.05);
+}
+
+.card-icon {
+  font-size: 55px;
+  color: #FFFFFF;
+  margin-top: 20px;
+}
+
+.card-icon-large {
+  font-size: 65px;
+  color: #FFFFFF;
+  margin-top: 20px;
+}
+
+ion-card-title {
+  font-size: 20px;
+  margin-top: 15px;
+  color: #FFFFFF;
+}
+
+.benefit-item {
+  text-align: center;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translateZ(0);
+  width: 80%;
+}
+
+.benefit-item:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.benefit-title {
+  font-size: 18px;
+  color: #007BFF;
+  font-weight: bold;
+  margin-top: 3px;
+}
+
+.benefit-text {
+  color: #555555;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.info-section {
+  text-align: center;
+  background: linear-gradient(135deg, #007BFF, #00C6FF);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  transition: box-shadow 0.3s ease;
+}
+
+.info-section:hover {
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.section-title {
+  font-size: 24px;
+  color: #FFFFFF;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.section-text {
+  font-size: 16px;
+  color: #d1e9ff;
+  line-height: 1.6;
+}
+
+ion-button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+ion-button:hover {
+  transform: translateY(-3px);
+  background-color: #0056b3;
+}
+
+.benefits-row {
+  margin-top: 10px;
+}
+
+.banner {
+  margin-top: 50px;
+  height: 30vh;
+  swiper-container {
+    swiper-slide {
+      height: 30vh;
+      img{
+        width: 100%;
+        height: 28vh;
+        border-radius: 10px;
+        box-shadow: -1px 11px 13px -6px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}

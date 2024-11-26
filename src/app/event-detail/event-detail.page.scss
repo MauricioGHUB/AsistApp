@@ -1,0 +1,15 @@
+/* Estilos personalizados para la alerta */
+.ios-alert .alert-wrapper {
+    background-color: #ffffff; /* Fondo blanco, típico de iOS */
+    border-radius: 10px; /* Bordes redondeados */
+  }
+  
+  .ios-alert .alert-button {
+    font-weight: bold;
+  }
+  
+  .ios-alert .alert-button-danger {
+    background-color: #ff3b30; /* Rojo típico de iOS para los botones peligrosos */
+    color: white;
+  }
+  

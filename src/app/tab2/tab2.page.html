@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="start" name="calendar-number-outline" size="large" style="padding-left: 15px;"></ion-icon>
+    <ion-title>Eventos Proximos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="mostrarMenu()">
+        <ion-icon slot="end" name="menu-outline" size="large" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let evento of eventos">
+      <ion-thumbnail slot="start">
+        <img *ngIf="isBase64(evento.imagen)" [src]="evento.imagen" alt="{{ evento.nombre }}" />
+        <img *ngIf="!isBase64(evento.imagen)" [src]="'assets/img/' + evento.imagen" alt="{{ evento.nombre }}" />
+      </ion-thumbnail>
+      <ion-label (click)="verDetalle(evento)">
+        <h2>{{ evento.nombre }}</h2>
+        <p>{{ evento.fecha }} - {{ evento.lugar }}</p>
+        <p>{{ evento.descripcion }}</p>
+      </ion-label>
+      <ion-button (click)="inscribirme(evento)" color="success">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

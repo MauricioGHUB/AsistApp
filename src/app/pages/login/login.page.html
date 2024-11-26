@@ -1,0 +1,60 @@
+<ion-header mode="ios" [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="text-align: center">Iniciar Sesion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card mode="ios">
+    <ion-card-header>
+      <ion-card-title>Login</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <ion-item>
+          <ion-input 
+            type="email" 
+            placeholder="Email.." 
+            label="Email" 
+            labelPlacement="floating"
+            formControlName="email">
+          </ion-input>
+        </ion-item>
+      
+        <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+          <div *ngIf="loginForm.get('email')?.hasError('required')">*Email es obligatorio</div>
+          <div *ngIf="loginForm.get('email')?.hasError('email')">*Email no es válido</div>
+        </div>
+      
+        <ion-item>
+          <ion-input 
+            type="password" 
+            placeholder="Contraseña.." 
+            label="Contraseña" 
+            labelPlacement="floating"
+            formControlName="password">
+          </ion-input>
+        </ion-item>
+      
+        <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+          <div *ngIf="loginForm.get('password')?.hasError('required')">*Contraseña es obligatoria</div>
+          <div *ngIf="loginForm.get('password')?.hasError('minlength')">*Contraseña debe tener mínimo 8 caracteres</div>
+        </div>
+
+        <div *ngIf="loginError" style="color: red; text-align: center;">
+          {{ loginError }}
+        </div>
+      
+        <div style="text-align: center;">
+          <ion-button type="submit" [disabled]="!loginForm.valid" shape="round" color="primary">Iniciar Sesion</ion-button>
+        </div>
+      </form>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <p>No estás registrado? <a (click)="navigateToRegister()" color="primary">Regístrate pulsando aquí</a></p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
