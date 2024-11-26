@@ -1,11 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button (click)="regresar()" icon="arrow-back-outline"></ion-back-button>
+      <!-- Botón de texto "Regresar" -->
+      <ion-button (click)="regresar()">
+        Regresar
+      </ion-button>
     </ion-buttons>
-    <ion-title>
-      Actualizar Perfil
-    </ion-title>
+    <ion-title>Contraseña</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,43 +15,36 @@
     <ion-card-header>
       <ion-card-subtitle>ID: {{ usuario.id }}</ion-card-subtitle>
       <ion-card-title>
-        {{ usuario.nombre }}
+        <ion-input [(ngModel)]="usuario.nombre" placeholder="Nombre"></ion-input>
       </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <form [formGroup]="userForm" (ngSubmit)="actualizarUsuario()">
-        <ion-item>
-          <ion-label position="stacked">Nombre</ion-label>
-          <ion-input formControlName="nombre"></ion-input>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="stacked">Email</ion-label>
-          <ion-input formControlName="email"></ion-input>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="stacked">RUT</ion-label>
-          <ion-input formControlName="rut"></ion-input>
-        </ion-item>
+      <!-- Email -->
+      <ion-input [(ngModel)]="usuario.email" placeholder="Email"></ion-input>
 
-        <ion-item>
-          <ion-label position="stacked">Contraseña Actual</ion-label>
-          <ion-input formControlName="passwordActual" type="password" placeholder="Contraseña Actual"></ion-input>
-        </ion-item>
+     
+      
+      <!-- Imagen -->
+      <ion-label position="floating">Imagen</ion-label>
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" style="display: none" />
+      <ion-button (click)="fileInput.click()" expand="block" fill="outline" shape="round">
+        Seleccionar Imagen
+      </ion-button>
 
-        <ion-item>
-          <ion-label position="stacked">Nueva Contraseña</ion-label>
-          <ion-input formControlName="nuevaPassword" type="password" placeholder="Nueva Contraseña"></ion-input>
-        </ion-item>
+      <!-- Muestra la imagen cargada -->
+      <div *ngIf="usuario.img">
+        <img [src]="usuario.img" alt="Imagen de perfil" style="max-width: 100px; max-height: 100px; border-radius: 50%;" />
+      </div>
 
-        <div style="text-align: center; margin-top: 30px;">
-          <ion-button type="submit" expand="block" shape="round" [disabled]="userForm.invalid">
-            Actualizar Usuario
-          </ion-button>
+      <div style="text-align: center; margin-top: 30px;">
+        <ion-button (click)="actualizarUsuario()" expand="block" shape="round">
+          Actualizar usuario
+        </ion-button>
+        <div style="text-align: center; margin-top: 20px;">
+          <p>¿Quieres cambiar tu contrasena? <a (click)="navigateToLogin()" color="primary">Pulsa aquí</a></p>
         </div>
-      </form>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ICrearUser } from 'src/interfaces/usuarios';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -18,11 +19,14 @@ export class RegisterPage implements OnInit {
     email: "",
     rut: "",
     password: "",
+    img: "",
     isactive: true
   };
 
+  userdata: any
+
   constructor(
-    private authservice: AuthService,
+    private auth: AuthService,
     private alertcontroller: AlertController,
     private router: Router,
     private fBuilder: FormBuilder
@@ -45,54 +49,60 @@ export class RegisterPage implements OnInit {
 
   crearUsuario() {
     if (this.registroForm.valid) {
-      const { nombre, email, rut, password } = this.registroForm.value;
-
-      this.authservice.getUserByUsername(nombre).subscribe(
-        (resp) => {
-          if (Array.isArray(resp) && resp.length > 0) {
-            this.mostrarErrorDuplicidad(nombre);
+      // Llamar al servicio para verificar si el administrador ya existe
+      this.auth.getUserByUsername(this.registroForm.value.nombre).subscribe(
+        resp => {
+          this.userdata = resp;
+  
+          if (Array.isArray(this.userdata) && this.userdata.length > 0) {
             this.registroForm.reset();
+            this.errorDuplicidad();
           } else {
-            this.nuevoUsuario = { nombre, email, rut, password, isactive: true };
-
-            this.authservice.registrarUsuario(this.nuevoUsuario).subscribe(
+            // Prepara el nuevo administrador
+            this.nuevoUsuario.nombre = this.registroForm.value.nombre;
+            this.nuevoUsuario.password = this.registroForm.value.password;
+            this.nuevoUsuario.email = this.registroForm.value.email;
+            this.nuevoUsuario.rut = this.registroForm.value.rut;
+            this.nuevoUsuario.img = this.registroForm.value.img
+            this.nuevoUsuario.isactive = true;
+  
+            // Llamar a la API para crear el administrador
+            this.auth.registrarUsuario(this.nuevoUsuario).subscribe(
               () => {
-                this.mostrarMensaje(`Bienvenid@ ${this.nuevoUsuario.nombre}`);
-                this.router.navigateByUrl('/login');
+                this.mostrarMensaje();
+                this.router.navigateByUrl('/login-admin');
               },
               (error) => {
-                console.error('Error al crear el usuario:', error);
-                this.mostrarError('No se pudo crear el usuario. Intente nuevamente.');
+                console.error('Error al crear el administrador:', error);
+                this.mostrarError('No se pudo crear el administrador. Intente de nuevo.');
               }
             );
           }
         },
-        (error) => {
-          console.error('Error al verificar el nombre de usuario:', error);
-          this.mostrarError('Ocurrió un error al verificar el nombre de usuario.');
+        error => {
+          console.error('Error al verificar el nombre de administrador:', error);
+          this.mostrarError('Ocurrió un error al verificar el nombre de administrador.');
         }
       );
-    } else {
-      this.mostrarError('Por favor, complete todos los campos correctamente.');
     }
   }
 
-  async mostrarMensaje(mensaje: string) {
+  async mostrarMensaje() {
     const alerta = await this.alertcontroller.create({
       header: 'Usuario Creado',
-      message: mensaje,
-      buttons: ['OK'],
+      message: 'Bienvenid@ ' + this.nuevoUsuario.nombre,
+      buttons: ['OK']
     });
-    await alerta.present();
+    alerta.present();
   }
 
-  async mostrarErrorDuplicidad(nombre: string) {
+  async errorDuplicidad() {
     const alerta = await this.alertcontroller.create({
       header: 'Error',
-      message: `El usuario "${nombre}" ya está registrado.`,
-      buttons: ['OK'],
+      message: 'Usted ' + this.nuevoUsuario.nombre + ' ya está registrado',
+      buttons: ['OK']
     });
-    await alerta.present();
+    alerta.present();
   }
 
   async mostrarError(mensaje: string) {

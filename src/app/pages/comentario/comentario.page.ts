@@ -30,5 +30,35 @@ export class ComentarioPage implements OnInit {
     }
   }
 
-  
+  agregarComentario() {
+    if (this.nuevoComentario.trim() === '') {
+      console.log('Comentario vacío, no se enviará.');
+      return;
+    }
+
+    const usuarioId = this.authService.getUserId();
+    if (!usuarioId) {
+      console.error('No se encontró el ID del usuario logueado.');
+      return;
+    }
+
+    const nuevoComentario: Comentario = {
+      id: 0,
+      texto: this.nuevoComentario,
+      fecha: new Date().toISOString(),
+      usuarioId: usuarioId,
+      eventoId: this.eventoId
+    };
+
+    this.comentarioService.agregarComentario(this.eventoId, nuevoComentario).subscribe(
+      (comentarioGuardado) => {
+        // Redirigir al detalle del evento después de agregar el comentario
+        this.router.navigate(['/event-detail', this.eventoId]);
+      },
+      (error) => {
+        console.error('Error al agregar el comentario:', error);
+        alert('Error al agregar el comentario: ' + error);
+      }
+    );
+  }
 }

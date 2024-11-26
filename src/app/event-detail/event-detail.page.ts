@@ -59,7 +59,7 @@ export class EventDetailPage implements OnInit {
   // Función para redirigir a la página de comentarios
   irAComentarios() {
     const eventoId = this.evento?.id || '';
-    this.router.navigate(['/comentario', eventoId]);
+    this.router.navigate(['/comentario', eventoId]); // Correcta redirección con el id
   }
 
   // Verificar si la imagen es base64

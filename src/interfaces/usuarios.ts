@@ -4,6 +4,7 @@ export interface IUser {
     email: string;
     password: string;
     rut: string;
+    img?: string;
     isactive: boolean; 
   }
   
@@ -13,6 +14,7 @@ export interface ICrearUser {
     email: string;
     password: string;
     rut: string;
+    img?: string;
     isactive: boolean;
   }
   

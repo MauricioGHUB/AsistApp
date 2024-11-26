@@ -16,10 +16,12 @@ export class ModificarPerfilPage implements OnInit {
     email: "",
     password: "",
     rut: "",
+    img: "",
     isactive: false,
   };
 
   userForm: FormGroup;
+  selectedFile: File | null = null;  // Para almacenar el archivo seleccionado
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -49,27 +51,37 @@ export class ModificarPerfilPage implements OnInit {
   }
 
   actualizarUsuario() {
-    const passwordActual = this.userForm.value.passwordActual;
-    const nuevaPassword = this.userForm.value.nuevaPassword;
+    
 
-    // Verificar si la contraseña actual coincide
-    if (this.usuario.password !== passwordActual) {
-      console.error('La contraseña actual es incorrecta.');
-      return;
+    this.auth.actualizarUsuario(this.usuario).subscribe(response => {
+      console.log('Usuario actualizado:', response);
+      this.regresar(); 
+    }, error => {
+      console.error('Error al actualizar el usuario:', error);
+    });
+  }
+
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement; // Accede al archivo seleccionado
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+  
+      reader.onload = () => {
+        // Convierte la imagen a Base64 y la almacena en el administrador
+        if (this.usuario) {
+          this.usuario.img = reader.result as string;
+          this.selectedFile = file; // Almacena el archivo seleccionado (físico)
+          console.log("Imagen convertida a Base64:", this.usuario.img); // Esto es para que puedas ver el base64 en consola
+        }
+      };
+  
+      reader.readAsDataURL(file); // Lee el archivo como Data URL (Base64)
     }
-
-    // Actualizar la contraseña
-    this.usuario.password = nuevaPassword;
-
-    this.auth.actualizarUsuario(this.usuario).subscribe(
-      (response) => {
-        console.log('Usuario actualizado:', response);
-        this.regresar();
-      },
-      (error) => {
-        console.error('Error al actualizar el usuario:', error);
-      }
-    );
+  }
+  navigateToLogin() {
+    this.router.navigate(['/contrasena']);
   }
 
   obtenerUsuario() {

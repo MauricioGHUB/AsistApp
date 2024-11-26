@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Botón de texto "Regresar" -->
+      <ion-button (click)="regresar()">
+        Regresar
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Contraseña</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="adminForm">
+    <ion-input formControlName="passwordActual" type="password" placeholder="Contraseña Actual"></ion-input>
+    <ion-input formControlName="nuevaPassword" type="password" placeholder="Nueva Contraseña"></ion-input>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <ion-button (click)="actualizarUsuario()" expand="block" shape="round" [disabled]="adminForm.invalid">
+        Actualizar contraseña
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

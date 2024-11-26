@@ -66,6 +66,10 @@ const routes: Routes = [
         (m) => m.ComentarioPageModule
       ),
   },
+  {
+    path: 'contrasena',
+    loadChildren: () => import('./pages/contrasena/contrasena.module').then( m => m.ContrasenaPageModule)
+  },
 ];
 
 

@@ -4,18 +4,17 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ComentarioPageRoutingModule } from './comentario-routing.module';
+import { ContrasenaPageRoutingModule } from './contrasena-routing.module';
 
-import { ComentarioPage } from './comentario.page';
+import { ContrasenaPage } from './contrasena.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ComentarioPageRoutingModule,
-    ReactiveFormsModule
+    ContrasenaPageRoutingModule,ReactiveFormsModule
   ],
-  declarations: [ComentarioPage]
+  declarations: [ContrasenaPage]
 })
-export class ComentarioPageModule {}
+export class ContrasenaPageModule {}

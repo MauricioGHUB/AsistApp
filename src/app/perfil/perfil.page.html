@@ -11,18 +11,24 @@
 
 <ion-content class="profile-content">
   <div class="profile-header">
+    <ion-item>
+      <ion-label></ion-label>
+      <img [src]="usuario?.img" alt="Imagen de perfil" style="max-width: 100px; max-height: 100px; border-radius: 50%;" />
+    </ion-item>
     <h2 class="profile-name">{{ usuario?.nombre }}</h2>
     <p class="profile-username">{{ usuario?.email }}</p>
   </div>
 
   <ion-list class="profile-details" *ngIf="usuario">
     <ion-item>
+      <!-- Mostrar imagen de perfil -->
+      
       <ion-label>Nombre</ion-label>
-      <ion-text>{{ usuario.nombre }}</ion-text>
+      <ion-text>{{ usuario?.nombre }}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label>Email</ion-label>
-      <ion-text>{{ usuario.email }}</ion-text>
+      <ion-text>{{ usuario?.email }}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label>Rut</ion-label>
