@@ -32,6 +32,6 @@ export class AppComponent {
     sessionStorage.removeItem('password');
     sessionStorage.removeItem('ingresado');
 
-    this.router.navigate(['login-admin']);
+    this.router.navigate(['login']);
   }
 }

@@ -18,7 +18,7 @@ export interface InscripcionDatos {
 })
 export class EventosService {
   private jsonURL = `${environment.apiUrl}/eventos`;
-  private inscripcionURL = `${environment.apiUrl}/asistencias`;
+  private inscripcionURL = `https://apinoc.onrender.com/asistencias`;
   private eventosRegistrados: IEvent[] = [];
 
   constructor(private http: HttpClient, private authService: AuthService) {}

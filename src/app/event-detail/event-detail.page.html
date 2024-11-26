@@ -8,34 +8,46 @@
 </ion-header>
 
 <ion-content>
+  <!-- Mostrar evento -->
   <ion-card *ngIf="evento">
+    <!-- Imagen: Base64 o Ruta -->
     <img *ngIf="isBase64(evento.imagen)" [src]="evento.imagen" alt="{{ evento.nombre }}" />
     <img *ngIf="!isBase64(evento.imagen)" [src]="'assets/img/' + evento.imagen" alt="{{ evento.nombre }}" />
-    
+
     <ion-card-header>
       <ion-card-title>{{ evento.nombre }}</ion-card-title>
       <ion-card-subtitle>{{ evento.fecha }} - {{ evento.lugar }}</ion-card-subtitle>
     </ion-card-header>
+
     <ion-card-content>
       <p>{{ evento.descripcion }}</p>
     </ion-card-content>
   </ion-card>
 
-  <ion-list *ngIf="comentarios.length > 0">
-    <ion-item *ngFor="let comentario of comentarios">
-      <ion-label>
-        <h2>{{ comentario.texto }}</h2>
-        <p>{{ comentario.fecha | date: 'short' }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-
+  <!-- Botón de comentar (solo si el usuario está inscrito en el evento) -->
+  <ion-button expand="full" [disabled]="!puedeComentar" (click)="irAComentarios()">
+    Comentar
+  </ion-button>
+  
+  <!-- Mensaje si el usuario no puede comentar -->
   <ion-item *ngIf="!puedeComentar">
     <p>No puedes comentar, asegúrate de estar inscrito en el evento.</p>
   </ion-item>
 
-  <ion-item>
-    <ion-input [(ngModel)]="nuevoComentario" placeholder="Escribe tu comentario..."></ion-input>
+  <!-- Sección de comentarios -->
+  <ion-list *ngIf="comentarios.length > 0">
+    <ion-item *ngFor="let comentario of comentarios">
+      <ion-label>
+        <h3>{{ comentario.usuarioId }}</h3>
+        <p>{{ comentario.texto }}</p>
+        <p class="comentario-fecha">{{ comentario.fecha | date: 'short' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Si no hay comentarios -->
+  <ion-item *ngIf="comentarios.length === 0">
+    <p>No hay comentarios aún. Sé el primero en comentar.</p>
   </ion-item>
-  <ion-button expand="full" (click)="agregarComentario()">Enviar</ion-button>
+
 </ion-content>

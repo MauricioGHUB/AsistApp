@@ -13,12 +13,12 @@ export interface Asistente {
   providedIn: 'root',
 })
 export class AsistentesService {
-  private jsonURL = `${environment.apiUrl}/asistencias`;
+  private comentariosUrl = 'https://apinoc.onrender.com/asistencias';
 
   constructor(private http: HttpClient) {}
 
   obtenerAsistentes(): Observable<Asistente[]> {
-    return this.http.get<any[]>(this.jsonURL).pipe(
+    return this.http.get<any[]>(this.comentariosUrl).pipe(
       map((data) =>
         data.map((item) => ({
           nombre: item.nombreEvento,

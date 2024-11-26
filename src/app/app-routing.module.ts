@@ -42,9 +42,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/get-users/get-users.module').then(m => m.GetUsersPageModule)
   },
   {
-    path: 'event-detail',
-    canActivate: [AuthGuard], 
-    loadChildren: () => import('./event-detail/event-detail.module').then( m => m.EventDetailPageModule)
+    path: 'event-detail/:id',
+      loadChildren: () => import('./event-detail/event-detail.module').then( m => m.EventDetailPageModule)
   },
   {
     path: 'qr-modal',
@@ -59,10 +58,16 @@ const routes: Routes = [
   {
     path: 'asistentes',
     loadChildren: () => import('./asistentes/asistentes.module').then( m => m.AsistentesPageModule)
-  }
-
-
+  },
+  {
+    path: 'comentario/:id',
+    loadChildren: () =>
+      import('./pages/comentario/comentario.module').then(
+        (m) => m.ComentarioPageModule
+      ),
+  },
 ];
+
 
 @NgModule({
   imports: [

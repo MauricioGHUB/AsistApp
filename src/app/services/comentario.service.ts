@@ -10,7 +10,7 @@ import { switchMap, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ComentarioService {
-  private comentariosUrl = 'http://localhost:3000/comentarios';
+  private comentariosUrl = 'https://apinoc.onrender.com/comentarios';
 
   constructor(private http: HttpClient, private authService: AuthService,
               private eventosService: EventosService) { }
@@ -28,9 +28,9 @@ export class ComentarioService {
     const usuarioId = this.authService.getUserId();
     
     if (!usuarioId) {
-      return throwError('No se encontró el ID del usuario logueado.');
+      return throwError('Debes estar logueado para poder comentar.');
     }
-
+  
     return this.eventosService.verificarInscripcion(usuarioId, eventoId).pipe(
       switchMap(inscrito => {
         if (inscrito) {
@@ -41,7 +41,7 @@ export class ComentarioService {
             })
           );
         } else {
-          return throwError('No puede comentar porque no ha asistido al evento.');
+          return throwError('No puedes comentar porque no has asistido al evento.');
         }
       }),
       catchError(error => {
@@ -50,5 +50,5 @@ export class ComentarioService {
       })
     );
   }
-}
+}  
 
