@@ -45,7 +45,7 @@ export class AuthService {
     const usuarioId = sessionStorage.getItem('id');
     if (!usuarioId) {
       console.error('ID del usuario no encontrado en sessionStorage');
-      return of(null as unknown as IUser); // Evitar errores devolviendo un observable vacío
+      return of(null as unknown as IUser);
     }
     return this.httpclient.get<IUser>(`${environment.apiUrl}/usuarios/${usuarioId}`).pipe(
       catchError((error) => {

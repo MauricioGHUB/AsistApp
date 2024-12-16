@@ -25,8 +25,6 @@ export class ComentarioPage implements OnInit {
   ngOnInit() {
     this.eventoId = this.route.snapshot.paramMap.get('id') || '';
     if (this.eventoId) {
-      // Obtener el evento para mostrar en la vista de comentario
-      // Supongamos que ya tienes la lista de eventos cargada
     }
   }
 
@@ -52,7 +50,6 @@ export class ComentarioPage implements OnInit {
 
     this.comentarioService.agregarComentario(this.eventoId, nuevoComentario).subscribe(
       (comentarioGuardado) => {
-        // Redirigir al detalle del evento después de agregar el comentario
         this.router.navigate(['/event-detail', this.eventoId]);
       },
       (error) => {

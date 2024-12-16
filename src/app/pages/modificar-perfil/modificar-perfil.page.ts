@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { IUser } from 'src/interfaces/usuarios'; // Asegúrate de tener esta interfaz creada
+import { IUser } from 'src/interfaces/usuarios';
 
 @Component({
   selector: 'app-modificar-perfil',
@@ -21,7 +21,7 @@ export class ModificarPerfilPage implements OnInit {
   };
 
   userForm: FormGroup;
-  selectedFile: File | null = null;  // Para almacenar el archivo seleccionado
+  selectedFile: File | null = null; 
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -63,21 +63,20 @@ export class ModificarPerfilPage implements OnInit {
 
 
   onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement; // Accede al archivo seleccionado
+    const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const file = input.files[0];
       const reader = new FileReader();
   
       reader.onload = () => {
-        // Convierte la imagen a Base64 y la almacena en el administrador
         if (this.usuario) {
           this.usuario.img = reader.result as string;
-          this.selectedFile = file; // Almacena el archivo seleccionado (físico)
-          console.log("Imagen convertida a Base64:", this.usuario.img); // Esto es para que puedas ver el base64 en consola
+          this.selectedFile = file; 
+          console.log("Imagen convertida a Base64:", this.usuario.img);
         }
       };
   
-      reader.readAsDataURL(file); // Lee el archivo como Data URL (Base64)
+      reader.readAsDataURL(file);
     }
   }
   navigateToLogin() {

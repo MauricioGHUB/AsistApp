@@ -1,7 +1,6 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <!-- Botón de texto "Regresar" -->
       <ion-button (click)="regresar()">
         Regresar
       </ion-button>
@@ -20,19 +19,14 @@
     </ion-card-header>
 
     <ion-card-content>
-      <!-- Email -->
       <ion-input [(ngModel)]="usuario.email" placeholder="Email"></ion-input>
 
-     
-      
-      <!-- Imagen -->
       <ion-label position="floating">Imagen</ion-label>
       <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" style="display: none" />
       <ion-button (click)="fileInput.click()" expand="block" fill="outline" shape="round">
         Seleccionar Imagen
       </ion-button>
 
-      <!-- Muestra la imagen cargada -->
       <div *ngIf="usuario.img">
         <img [src]="usuario.img" alt="Imagen de perfil" style="max-width: 100px; max-height: 100px; border-radius: 50%;" />
       </div>

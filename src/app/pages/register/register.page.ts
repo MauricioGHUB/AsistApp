@@ -49,7 +49,6 @@ export class RegisterPage implements OnInit {
 
   crearUsuario() {
     if (this.registroForm.valid) {
-      // Llamar al servicio para verificar si el administrador ya existe
       this.auth.getUserByUsername(this.registroForm.value.nombre).subscribe(
         resp => {
           this.userdata = resp;
@@ -58,7 +57,6 @@ export class RegisterPage implements OnInit {
             this.registroForm.reset();
             this.errorDuplicidad();
           } else {
-            // Prepara el nuevo administrador
             this.nuevoUsuario.nombre = this.registroForm.value.nombre;
             this.nuevoUsuario.password = this.registroForm.value.password;
             this.nuevoUsuario.email = this.registroForm.value.email;
@@ -66,7 +64,6 @@ export class RegisterPage implements OnInit {
             this.nuevoUsuario.img = this.registroForm.value.img
             this.nuevoUsuario.isactive = true;
   
-            // Llamar a la API para crear el administrador
             this.auth.registrarUsuario(this.nuevoUsuario).subscribe(
               () => {
                 this.mostrarMensaje();

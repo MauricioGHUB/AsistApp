@@ -39,7 +39,6 @@ export class EventDetailPage implements OnInit {
     }
   }
 
-  // Verificar si el usuario está inscrito en el evento
   verificarAsistencia(eventoId: string) {
     const usuarioId = this.authService.getUserId();
     if (usuarioId) {
@@ -48,21 +47,17 @@ export class EventDetailPage implements OnInit {
       });
     }
   }
-
-  // Cargar los comentarios del evento
   cargarComentarios() {
     this.comentarioService.obtenerComentarios().subscribe((data) => {
       this.comentarios = data.filter(comentario => comentario.eventoId === this.evento?.id);
     });
   }
 
-  // Función para redirigir a la página de comentarios
   irAComentarios() {
     const eventoId = this.evento?.id || '';
-    this.router.navigate(['/comentario', eventoId]); // Correcta redirección con el id
+    this.router.navigate(['/comentario', eventoId]);
   }
 
-  // Verificar si la imagen es base64
   isBase64(str: string): boolean {
     const pattern = /^(data:image\/[a-zA-Z]*;base64,)/;
     return pattern.test(str);

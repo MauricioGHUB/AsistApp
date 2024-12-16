@@ -34,8 +34,8 @@ export class PerfilPage implements OnInit {
   obtenerUsuario() {
     this.authService.obtenerUsuarioActual().subscribe(
       (data: IUser) => {
-        this.userForm.patchValue(data); // Actualiza el formulario con los datos del usuario
-        this.usuario = data; // Almacena los datos del usuario para mostrarlos en la plantilla
+        this.userForm.patchValue(data);
+        this.usuario = data;
       },
       (error) => {
         console.error('Error al obtener los datos del usuario:', error);

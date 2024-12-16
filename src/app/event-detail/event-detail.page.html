@@ -8,9 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <!-- Mostrar evento -->
   <ion-card *ngIf="evento">
-    <!-- Imagen: Base64 o Ruta -->
     <img *ngIf="isBase64(evento.imagen)" [src]="evento.imagen" alt="{{ evento.nombre }}" />
     <img *ngIf="!isBase64(evento.imagen)" [src]="'assets/img/' + evento.imagen" alt="{{ evento.nombre }}" />
 
@@ -24,17 +22,14 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- Botón de comentar (solo si el usuario está inscrito en el evento) -->
   <ion-button expand="full" [disabled]="!puedeComentar" (click)="irAComentarios()">
     Comentar
   </ion-button>
   
-  <!-- Mensaje si el usuario no puede comentar -->
   <ion-item *ngIf="!puedeComentar">
     <p>No puedes comentar, asegúrate de estar inscrito en el evento.</p>
   </ion-item>
 
-  <!-- Sección de comentarios -->
   <ion-list *ngIf="comentarios.length > 0">
     <ion-item *ngFor="let comentario of comentarios">
       <ion-label>
@@ -45,7 +40,6 @@
     </ion-item>
   </ion-list>
 
-  <!-- Si no hay comentarios -->
   <ion-item *ngIf="comentarios.length === 0">
     <p>No hay comentarios aún. Sé el primero en comentar.</p>
   </ion-item>

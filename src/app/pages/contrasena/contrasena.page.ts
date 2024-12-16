@@ -21,7 +21,7 @@ export class ContrasenaPage implements OnInit {
     isactive: false 
   };
   adminForm: FormGroup;
-  selectedFile: File | null = null;  // Para almacenar el archivo seleccionado
+  selectedFile: File | null = null; 
 
   constructor(
     private activated: ActivatedRoute, 
