@@ -8,7 +8,7 @@ export interface IUser {
     isactive: boolean; 
   }
   
-  
+
 export interface ICrearUser {
     nombre: string;
     email: string;
